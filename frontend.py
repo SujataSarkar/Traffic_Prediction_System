@@ -83,7 +83,7 @@ if st.button("🔍 Get Prediction", use_container_width=True):
     }
 
     try:
-        response = requests.post("https://traffic-api.onrender.com/predict", json=input_data)
+        response = requests.post("https://trafficpredictionsystem-production.up.railway.app/predict", json=input_data)
         if response.status_code == 200:
             result = response.json()
             speed = result['predicted_avg_speed']
