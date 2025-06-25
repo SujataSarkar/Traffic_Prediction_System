@@ -83,7 +83,7 @@ if st.button("🔍 Get Prediction", use_container_width=True):
     }
 
     try:
-        response = requests.post("https://trafficpredictionsystem-production.up.railway.app/", json=input_data)
+        response = requests.post("https://dynamic-victory-production.up.railway.app/", json=input_data)
         if response.status_code == 200:
             result = response.json()
             speed = result['predicted_avg_speed']
