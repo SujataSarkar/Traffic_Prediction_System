@@ -76,6 +76,8 @@
 #     # Ensure column order
 #     df = df[model_columns]
 
+
+
 #     # Predict
 #     prediction = rf_model.predict(df)
 
@@ -92,7 +94,7 @@ app = Flask(__name__)
 model_path = "rf_model.pkl"
 
 def download_model_from_drive():
-    file_id = "14WeHHlbv_2Ae9RjAuALZZ0KEhkzbb8vX"  # Your Google Drive file ID
+    file_id = "1-ERB-hSwZckRnp9ISz63qfEqkhFwxGxz"  # Your Google Drive file ID
     url = f"https://drive.google.com/uc?id={file_id}"
     gdown.download(url, model_path, quiet=False)
 
@@ -109,6 +111,11 @@ model_columns = [
     'hour_sin', 'hour_cos', 'day_sin', 'day_cos',
     'icon_cloudy', 'icon_partly-cloudy-day', 'icon_partly-cloudy-night', 'icon_rain'
 ]
+
+print("🚀 Received data:", data)
+print("📊 Final DataFrame:")
+print(df.head())
+
 
 # ----------------- Prediction Route -----------------
 @app.route('/predict', methods=['POST'])
