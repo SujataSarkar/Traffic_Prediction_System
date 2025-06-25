@@ -85,6 +85,16 @@ input_data['icon'] = icon_map[weather]
 # ---------- Submit ----------
 st.markdown("## 🚀 Predict Next-Hour Speed")
 if st.button("🔍 Get Prediction", use_container_width=True):
+    # Encode Inputs
+    weekend_flag = 1 if weekend == "Yes" else 0
+
+    icon_map = {
+        "Cloudy": "cloudy",
+        "Partly Cloudy Day": "partly-cloudy-day",
+        "Partly Cloudy Night": "partly-cloudy-night",
+        "Rain": "rain"
+    }
+
     input_data = {
         'temp': temp,
         'humidity': humidity,
@@ -92,7 +102,7 @@ if st.button("🔍 Get Prediction", use_container_width=True):
         'Length': road_length,
         'hour': selected_datetime.hour,
         'dayofweek': selected_datetime.weekday(),
-        'icon': weather.lower().replace(" ", "-")
+        'icon': icon_map[weather]
     }
 
     try:
