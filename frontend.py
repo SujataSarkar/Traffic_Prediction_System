@@ -85,9 +85,7 @@ input_data['icon'] = icon_map[weather]
 # ---------- Submit ----------
 st.markdown("## 🚀 Predict Next-Hour Speed")
 if st.button("🔍 Get Prediction", use_container_width=True):
-    # Encode Inputs
-    weekend_flag = 1 if weekend == "Yes" else 0
-
+    # Mapping for icon
     icon_map = {
         "Cloudy": "cloudy",
         "Partly Cloudy Day": "partly-cloudy-day",
@@ -95,6 +93,7 @@ if st.button("🔍 Get Prediction", use_container_width=True):
         "Rain": "rain"
     }
 
+    # Create input data correctly
     input_data = {
         'temp': temp,
         'humidity': humidity,
@@ -102,7 +101,7 @@ if st.button("🔍 Get Prediction", use_container_width=True):
         'Length': road_length,
         'hour': selected_datetime.hour,
         'dayofweek': selected_datetime.weekday(),
-        'icon': icon_map[weather]
+        'icon': icon_map[weather]  # ✅ define here directly
     }
     try:
         response = requests.post("https://trafficpredictionsystem-production.up.railway.app/predict", json=input_data)
