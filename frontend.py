@@ -104,7 +104,6 @@ if st.button("🔍 Get Prediction", use_container_width=True):
         'dayofweek': selected_datetime.weekday(),
         'icon': icon_map[weather]
     }
-
     try:
         response = requests.post("https://trafficpredictionsystem-production.up.railway.app/predict", json=input_data)
         if response.status_code == 200:
