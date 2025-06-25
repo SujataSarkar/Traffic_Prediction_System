@@ -64,10 +64,23 @@ with col1:
 
 with col2:
     wind_speed = st.slider("💨 Wind Speed (km/h)", 0.0, 100.0, 10.0, 0.5)
-    weather = st.selectbox("⛅ Weather Condition", ["Clear", "Cloudy", "Rainy", "Storm"])
+    weather = st.selectbox(
+    "⛅ Weather Condition",
+    ["Cloudy", "Partly Cloudy Day", "Partly Cloudy Night", "Rain"]
+)
+
 
 # Encode Inputs
 weekend_flag = 1 if weekend == "Yes" else 0
+# Mapping to match model training one-hot columns
+icon_map = {
+    "Cloudy": "cloudy",
+    "Partly Cloudy Day": "partly-cloudy-day",
+    "Partly Cloudy Night": "partly-cloudy-night",
+    "Rain": "rain"
+}
+input_data['icon'] = icon_map[weather]
+
 
 # ---------- Submit ----------
 st.markdown("## 🚀 Predict Next-Hour Speed")
