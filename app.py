@@ -121,6 +121,7 @@ print(df.head())
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()
+    print("🚀 Received data:", data)
 
     temp = data['temp']
     humidity = data['humidity']
@@ -150,11 +151,11 @@ def predict():
     }
 
     df = pd.DataFrame([row])
+    print("📊 Final DataFrame:")
+    print(df.head())
 
-    # One-hot encode icon
     df = pd.get_dummies(df, columns=['icon'], prefix='icon', drop_first=False)
 
-    # Ensure all expected columns are present
     for col in model_columns:
         if col not in df.columns:
             df[col] = 0
@@ -164,9 +165,10 @@ def predict():
     prediction = rf_model.predict(df)
     return jsonify({'predicted_avg_speed': round(float(prediction[0]), 2)})
 
+
 # ----------------- Run Server -----------------
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=8080)
 
 #     return jsonify({'predicted_avg_speed': round(float(prediction[0]), 2)})
 
