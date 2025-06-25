@@ -9,7 +9,7 @@
 # import requests
 
 # def download_model():
-#     url = 'https://drive.google.com/file/d/14WeHHlbv_2Ae9RjAuALZZ0KEhkzbb8vX/view?usp=drive_link'
+#     url = 'https://drive.google.com/file/d/1-ERB-hSwZckRnp9ISz63qfEqkhFwxGxz/view?usp=drive_link'
 #     response = requests.get(url)
 #     with open("rf_model.pkl", 'wb') as f:
 #         f.write(response.content)
