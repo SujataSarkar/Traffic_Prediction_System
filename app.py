@@ -5,8 +5,22 @@ import pandas as pd
 
 app = Flask(__name__)
 
-# Load your trained Random Forest model
-rf_model = joblib.load("rf_model.pkl")
+import joblib
+import requests
+
+def download_model():
+    url = 'https://drive.google.com/file/d/14WeHHlbv_2Ae9RjAuALZZ0KEhkzbb8vX/view?usp=drive_link'
+    response = requests.get(url)
+    with open("rf_model.pkl", 'wb') as f:
+        f.write(response.content)
+
+try:
+    rf_model = joblib.load("rf_model.pkl")
+except:
+    print("Downloading model...")
+    download_model()
+    rf_model = joblib.load("rf_model.pkl")
+
 
 # Final feature columns used in training
 model_columns = [
