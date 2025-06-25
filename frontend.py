@@ -64,36 +64,14 @@ with col1:
 
 with col2:
     wind_speed = st.slider("💨 Wind Speed (km/h)", 0.0, 100.0, 10.0, 0.5)
-    weather = st.selectbox(
-    "⛅ Weather Condition",
-    ["Cloudy", "Partly Cloudy Day", "Partly Cloudy Night", "Rain"]
-)
-
+    weather = st.selectbox("⛅ Weather Condition", ["Clear", "Cloudy", "Rainy", "Storm"])
 
 # Encode Inputs
 weekend_flag = 1 if weekend == "Yes" else 0
-# Mapping to match model training one-hot columns
-icon_map = {
-    "Cloudy": "cloudy",
-    "Partly Cloudy Day": "partly-cloudy-day",
-    "Partly Cloudy Night": "partly-cloudy-night",
-    "Rain": "rain"
-}
-input_data['icon'] = icon_map[weather]
-
 
 # ---------- Submit ----------
 st.markdown("## 🚀 Predict Next-Hour Speed")
 if st.button("🔍 Get Prediction", use_container_width=True):
-    # Mapping for icon
-    icon_map = {
-        "Cloudy": "cloudy",
-        "Partly Cloudy Day": "partly-cloudy-day",
-        "Partly Cloudy Night": "partly-cloudy-night",
-        "Rain": "rain"
-    }
-
-    # Create input data correctly
     input_data = {
         'temp': temp,
         'humidity': humidity,
@@ -101,10 +79,11 @@ if st.button("🔍 Get Prediction", use_container_width=True):
         'Length': road_length,
         'hour': selected_datetime.hour,
         'dayofweek': selected_datetime.weekday(),
-        'icon': icon_map[weather]  # ✅ define here directly
+        'icon': weather.lower().replace(" ", "-")
     }
+
     try:
-        response = requests.post("https://trafficpredictionsystem-production.up.railway.app/predict", json=input_data)
+        response = requests.post("https://trafficpredictionsystem-production.up.railway.app/", json=input_data)
         if response.status_code == 200:
             result = response.json()
             speed = result['predicted_avg_speed']
