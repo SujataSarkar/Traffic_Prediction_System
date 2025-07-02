@@ -4,6 +4,9 @@ import pandas as pd
 import requests
 import pydeck as pdk
 from datetime import datetime
+import joblib
+
+rf_model = joblib.load("model_compressed.pkl")
 
 # ---------- Global Config ----------
 pdk.settings.mapbox_api_key = "pk.eyJ1Ijoic3VqYXRhc2Fya2FyIiwiYSI6ImNtY2MycW9jMjAyZWoybHNhM3FzYmZ0NngifQ.VL6KfnlDlCg-n57T1K4J0g"
