@@ -6,7 +6,7 @@ import pandas as pd
 app = Flask(__name__)
 
 # Load your trained Random Forest model
-rf_model = joblib.load("rf_model.pkl")
+rf_model = joblib.load("model_compressed.pkl")
 
 # Final feature columns used in training
 model_columns = [
