@@ -1,7 +1,6 @@
 streamlit
+scikit-learn
 pandas
 numpy
-scikit-learn==1.2.2
 joblib
 pydeck
-requests
