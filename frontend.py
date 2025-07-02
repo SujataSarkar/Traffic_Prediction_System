@@ -15,7 +15,7 @@ st.markdown("<p style='text-align:center; font-size:18px;'>Plan your journey sma
 st.markdown("---")
 
 # ---------- Load Data ----------
-road_df = pd.read_csv("F:/Six_Months_Project/Web_app/sorted_15_days_data (1).csv")
+road_df = pd.read_csv("sorted_15_days_data (1).csv")
 road_df = road_df.dropna(subset=['Lat', 'Long', 'StreetName'])
 
 # ---------- Selection Section ----------
